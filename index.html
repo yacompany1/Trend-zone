@@ -143,7 +143,7 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
             transition: var(--transition);
         }
@@ -152,34 +152,12 @@
             transform: scale(1.05);
         }
 
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
+        .logo-img {
+            width: 50px;
+            height: 50px;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
-        }
-
-        .logo-icon::before {
-            content: 'T';
-            font-size: 24px;
-            font-weight: 900;
-            color: white;
-            position: absolute;
-        }
-
-        .logo-icon::after {
-            content: 'Z';
-            font-size: 24px;
-            font-weight: 900;
-            color: white;
-            position: absolute;
-            transform: translate(8px, 8px);
-            opacity: 0.7;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .logo h1 {
@@ -1232,6 +1210,15 @@
             .social-links {
                 justify-content: center;
             }
+            
+            .logo h1 {
+                font-size: 22px;
+            }
+            
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
         }
     </style>
 </head>
@@ -1254,7 +1241,7 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="logo" onclick="navigateTo('home')">
-                <div class="logo-icon"></div>
+                <img src="logo.png" alt="Trend Zone Logo" class="logo-img" onerror="this.style.display='none'">
                 <h1>TREND <span>ZONE</span></h1>
             </div>
             <ul class="nav-menu" id="navMenu">
@@ -1372,13 +1359,13 @@
                     <div class="social-media">
                         <h3>تابعنا على</h3>
                         <div class="social-links">
-                            <a href="https://facebook.com/trendzone" target="_blank" class="social-link facebook" aria-label="فيسبوك">
+                            <a href="https://www.facebook.com/share/1CuoDDjPPA/" target="_blank" class="social-link facebook" aria-label="فيسبوك">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="https://instagram.com/trendzone" target="_blank" class="social-link instagram" aria-label="انستجرام">
+                            <a href="https://www.instagram.com/__trendd_zonee__?utm_source=qr&igsh=M2g4a215MzhlaDVv" target="_blank" class="social-link instagram" aria-label="انستجرام">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="https://tiktok.com/@trendzone" target="_blank" class="social-link tiktok" aria-label="تيك توك">
+                            <a href="https://www.tiktok.com/@trend13zone?_r=1&_t=ZS-98jpPkMzsyl" target="_blank" class="social-link tiktok" aria-label="تيك توك">
                                 <i class="fab fa-tiktok"></i>
                             </a>
                         </div>
@@ -1463,23 +1450,26 @@
         // صورة الخلفية للقسم الرئيسي
         const HERO_BACKGROUND = 'hero-bg.jpeg';
         
+        // صورة اللوجو
+        const LOGO_IMAGE = 'logoo.jpeg'; // 👈 ضع اسم صورة اللوجو هنا
+        
         const products = [
             {
                 id: 1,
                 title: "تيشيرت تريند كلاسيك",
                 price: 399,
                 oldPrice: 499,
-                image: "collections/black.jpeg",
+                image: "black.jpeg",
                 badge: "جديد",
                 category: "رجالي",
-                description: "تيشيرت قطن 100% عالي الجودة، مريح وأنيق. مناسب لجميع المناسبات اليومية. متوفر بألوان متعددة."
+                description: "تيشيرت قطن 100% عالي الجودة، مريح وأنيق. مناسب لجميع المناسبات اليومية. ."
             },
             {
                 id: 2,
                 title: "تيشيرت تريند مودرن",
                 price: 399,
                 oldPrice: 499,
-                image: "collections/white.jpeg",
+                image: "white.jpeg",
                 badge: "حصري",
                 category: "رجالي",
                 description: "تيشيرت عصري بتصميم مميز. خامة ممتازة وتطريز دقيق. مثالي للإطلالات الكاجوال والأنيقة."
@@ -1503,9 +1493,13 @@
             }
         });
 
-        // تعيين صورة الخلفية
+        // تعيين الصور
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.hero').style.backgroundImage = `url('${HERO_BACKGROUND}')`;
+            
+            // تعيين اللوجو
+            const logoImg = document.querySelector('.logo-img');
+            logoImg.src = LOGO_IMAGE;
             
             // استرجاع الوضع المحفوظ
             const savedTheme = localStorage.getItem('theme') || 'light';
