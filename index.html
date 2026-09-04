@@ -1241,7 +1241,7 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="logo" onclick="navigateTo('home')">
-                <img src="logo.png" alt="Trend Zone Logo" class="logo-img" onerror="this.style.display='none'">
+                <img src="logoo.jpeg" alt="Trend Zone Logo" class="logo-img" onerror="this.style.display='none'">
                 <h1>TREND <span>ZONE</span></h1>
             </div>
             <ul class="nav-menu" id="navMenu">
@@ -1451,7 +1451,7 @@
         const HERO_BACKGROUND = 'hero-bg.jpeg';
         
         // صورة اللوجو
-        const LOGO_IMAGE = 'logoo.jpeg'; // 👈 ضع اسم صورة اللوجو هنا
+        const LOGO_IMAGE = 'logoo.jpeg';
         
         const products = [
             {
@@ -1462,7 +1462,7 @@
                 image: "black.jpeg",
                 badge: "جديد",
                 category: "رجالي",
-                description: "تيشيرت قطن 100% عالي الجودة، مريح وأنيق. مناسب لجميع المناسبات اليومية. ."
+                description: "تيشيرت قطن 100% عالي الجودة، مريح وأنيق. مناسب لجميع المناسبات اليومية."
             },
             {
                 id: 2,
@@ -1802,65 +1802,6 @@
                 closeProductModal();
                 closeCheckoutModal();
             }
-        });
-
-        // Swipe للتنقل بين الأقسام
-        let touchStartY = 0;
-        let touchEndY = 0;
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        const sections = ['home', 'products', 'about', 'contact'];
-        let currentSectionIndex = 0;
-
-        document.addEventListener('touchstart', function(e) {
-            touchStartY = e.touches[0].clientY;
-            touchStartX = e.touches[0].clientX;
-        });
-
-        document.addEventListener('touchend', function(e) {
-            touchEndY = e.changedTouches[0].clientY;
-            touchEndX = e.changedTouches[0].clientX;
-            
-            const swipeDistanceY = touchStartY - touchEndY;
-            const swipeDistanceX = touchStartX - touchEndX;
-            
-            // التحقق من أن السحب عمودي
-            if (Math.abs(swipeDistanceY) > Math.abs(swipeDistanceX) && Math.abs(swipeDistanceY) > 50) {
-                if (swipeDistanceY > 0) {
-                    // سحب لأعلى - الانتقال للقسم التالي
-                    if (currentSectionIndex < sections.length - 1) {
-                        currentSectionIndex++;
-                        navigateTo(sections[currentSectionIndex]);
-                    }
-                } else {
-                    // سحب لأسفل - الانتقال للقسم السابق
-                    if (currentSectionIndex > 0) {
-                        currentSectionIndex--;
-                        navigateTo(sections[currentSectionIndex]);
-                    }
-                }
-            }
-        });
-
-        // تحديث مؤشر القسم الحالي
-        window.addEventListener('scroll', function() {
-            let closestSection = sections[0];
-            let closestDistance = Infinity;
-            
-            sections.forEach(sectionId => {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    const rect = section.getBoundingClientRect();
-                    const distance = Math.abs(rect.top);
-                    if (distance < closestDistance) {
-                        closestDistance = distance;
-                        closestSection = sectionId;
-                    }
-                }
-            });
-            
-            currentSectionIndex = sections.indexOf(closestSection);
         });
 
         // بدء التطبيق
